@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function countDown(n) {
+        let promise = new Promise((resolve, reject) => {
+          if (typeof n !== "number" || n <= 0) {
+            reject("Số giây không hợp lệ");
+          }
+          let intervalId = setInterval(() => {
+            console.log(n);
+            n--;
+            if (n === 0) {
+              clearInterval(intervalId);
+              resolve("hoàn thành quá trình đếm");
+            }
+          }, 1000);
+        });
+        promise
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      countDown(5);
+    </script>
+  </body>
+</html>

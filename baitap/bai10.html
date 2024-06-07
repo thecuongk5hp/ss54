@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function findElement(arr, value) {
+        let promise = new Promise((resolve, reject) => {
+          if (!Array.isArray(arr)) {
+            reject("Tham số truyền vào phải là một mảng");
+          }
+          const hasNonNumber = arr.some((item) => typeof item !== "number");
+          if (hasNonNumber) {
+            reject("Mảng phải chứa các số nguyên");
+          }
+          const foundIndex = arr.findIndex((element) => element === value);
+          if (foundIndex !== -1) {
+            resolve(`Phần tử ${value} tìm thấy ở vị trí thứ ${foundIndex}`);
+          } else {
+            reject(`Error: Không tìm thấy phần tử thứ ${value}`);
+          }
+        });
+        promise
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => console.error(error));
+      }
+      findElement([1, 2, 3, 4, 5], 3);
+      findElement([1, 2, 3, 4, 5], 6);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sumWithPromise(arr) {
+        let promise = new Promise((resolve, reject) => {
+          if (!Array.isArray(arr)) {
+            reject("Tham số truyền vào phải là một mảng");
+          }
+          const hasNonNumber = arr.some((item) => typeof item !== "number");
+          if (hasNonNumber) {
+            reject("Mảng phải chứa các số nguyên");
+          }
+          const sum = arr.reduce((acc, curr) => acc + curr, 0);
+          resolve(sum);
+        });
+        promise
+          .then((sum) => {
+            console.log(sum);
+          })
+          .catch((error) => console.log("lỗi", error));
+      }
+
+      sumWithPromise([1, 2, 3, 4, 5, 6, 7]);
+      sumWithPromise([1, 2, 3, 4, 5, 6, "7"]);
+      sumWithPromise(1);
+    </script>
+  </body>
+</html>

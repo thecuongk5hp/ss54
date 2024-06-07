@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function calculateBIM(weight, height) {
+        try {
+          if (
+            typeof weight != "number" ||
+            isNaN(weight) ||
+            typeof height != "number" ||
+            isNaN(height) ||
+            weight <= 0 ||
+            height <= 0
+          ) {
+            throw new Error("cân nặng không hợp lệ");
+          }
+          const bmi = weight / (height * height);
+          return console.log(bmi.toFixed(2));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      calculateBIM(70, 1.75);
+      calculateBIM("70", 1.75);
+      calculateBIM(70, -1.75);
+    </script>
+  </body>
+</html>
